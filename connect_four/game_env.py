@@ -2,7 +2,6 @@ from abc import abstractmethod
 
 
 class game_env:
-
     @abstractmethod
     def __init__(self):
         pass

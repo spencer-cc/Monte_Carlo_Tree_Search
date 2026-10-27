@@ -7,7 +7,6 @@ def heuristic(game_dict):
 
 
 class game(game_env):
-
     # structure: [column, row]
     #
     # columns: 7
@@ -26,8 +25,8 @@ class game(game_env):
         self.state_history = [[]]
         self.last_move = None
 
-        rChip = '\033[91m\u25CF\033[0m'
-        yChip = '\033[93m\u25CF\033[0m'
+        rChip = "\033[91m\u25cf\033[0m"
+        yChip = "\033[93m\u25cf\033[0m"
         self.chips = {" ": " ", "0": rChip, "1": yChip}
 
     def set_board(self, state):
@@ -77,13 +76,25 @@ class game(game_env):
         checklists.append(temp)
 
         # get diagonals
-        diagonal_1_loc = ((col - 3, row + 3), (col - 2, row + 2), (col - 1, row + 1),
-                          (col, row),
-                          (col + 1, row - 1), (col + 2, row - 2), (col + 3, row - 3))
+        diagonal_1_loc = (
+            (col - 3, row + 3),
+            (col - 2, row + 2),
+            (col - 1, row + 1),
+            (col, row),
+            (col + 1, row - 1),
+            (col + 2, row - 2),
+            (col + 3, row - 3),
+        )
 
-        diagonal_2_loc = ((col - 3, row - 3), (col - 2, row - 2), (col - 1, row - 1),
-                          (col, row),
-                          (col + 1, row + 1), (col + 2, row + 2), (col + 3, row + 3))
+        diagonal_2_loc = (
+            (col - 3, row - 3),
+            (col - 2, row - 2),
+            (col - 1, row - 1),
+            (col, row),
+            (col + 1, row + 1),
+            (col + 2, row + 2),
+            (col + 3, row + 3),
+        )
 
         for diagonal in [diagonal_1_loc, diagonal_2_loc]:
             temp = []
@@ -129,7 +140,11 @@ class game(game_env):
             out += "\n"
         num_row = "|0|1|2|3|4|5|6|"
         if self.last_move is not None:
-            num_row = (num_row[:(self.last_move*2+1)] +
-                       '\033[36m' + num_row[self.last_move*2+1]
-                       + '\033[0m' + num_row[self.last_move*2+2:])
+            num_row = (
+                num_row[: (self.last_move * 2 + 1)]
+                + "\033[36m"
+                + num_row[self.last_move * 2 + 1]
+                + "\033[0m"
+                + num_row[self.last_move * 2 + 2 :]
+            )
         return out + num_row
