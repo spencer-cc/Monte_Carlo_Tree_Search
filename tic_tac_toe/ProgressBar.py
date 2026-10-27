@@ -88,12 +88,12 @@ class TimeBar:
             self.step_counter = round(elapsed_time / self.step)
             self.block_string = self.full_char * self.step_counter
             self.space_string = self.empty_char * (self.bar_length - self.step_counter)
-            print(f"\r{{{self.block_string}{self.space_string}| total time: {time_string(self.total_seconds)} }}",
+            print(f"\r{{{self.block_string}{self.space_string}| total time: {time_string(self.total_seconds)} }}\033[K",
                   end='')
 
     def end(self):
         temp_s = self.full_char * self.bar_length
-        print(f"\r{{{temp_s}| total time: {time_string(self.total_seconds)} }}")
+        print(f"\r{{{temp_s}| total time: {time_string(self.total_seconds)} }}\033[K")
         self.total_seconds = None
         self.block_string = None
         self.space_string = None
